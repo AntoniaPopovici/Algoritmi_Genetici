@@ -49,14 +49,13 @@ def crossover(chrom1, chrom2):
 
 def mutation(chromosome):
     mutatedChromosome = list(chromosome)
-    geneIndex = random.randint(0, len(chromosome) - 1)  # Select a random gene index
-    mutatedChromosome[geneIndex] = '1' if chromosome[geneIndex] == '0' else '0'  # Flip the selected gene
+    geneIndex = random.randint(0, len(chromosome) - 1)  # select a random gene index
+    mutatedChromosome[geneIndex] = '1' if chromosome[geneIndex] == '0' else '0'  # flip the selected gene
     return ''.join(mutatedChromosome)
 
 def main():
 
     # variables
-
     sir = f.readline().strip()
     popSize = int(sir)
     sir = f.readline().strip().split(" ")
@@ -191,10 +190,10 @@ def main():
         fit = fitness(x, a, b, c)
         g.write(f"{i + 1}: {chromosome} x = {x} f = {fit}\n")
 
-    print(chromModified)
-    print(chromModifiedAgain)
+#    print(chromModified)
+#    print(chromModifiedAgain)
     chromModified=chromModifiedAgain
-    print(chromModified)
+#    print(chromModified)
 
 
     for i in range(len(chromModified)):
@@ -229,6 +228,7 @@ def main():
             suma += fit
         return suma
 
+    # next iterations
     def createNewPop(lista_crom):
         sumaF = sumFit(lista_crom)
         fit_max = 0
