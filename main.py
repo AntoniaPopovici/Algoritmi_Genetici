@@ -1,3 +1,4 @@
+import copy
 import random
 import math
 
@@ -7,6 +8,28 @@ g = open("evolution.txt", "w")
 
 
 # relevant functions
+
+def maxFit(d,a,b,c,precision,xMin):
+    index = 0
+    maxim = fitness(chromosomeToX(d[0],precision,xMin),a,b,c)
+    for j in range(len(d)):
+        s1 = fitness(chromosomeToX(d[j],precision,xMin),a,b,c)
+        if s1 > maxim:
+            index = j
+            maxim = s1
+    return index
+
+
+def minFit(d,a,b,c,precision,xMin):
+    index = 0
+    minim = fitness(chromosomeToX(d[0],precision,xMin),a,b,c)
+    for j in range(len(d)):
+        s1 = fitness(chromosomeToX(d[j],precision,xMin), a, b,c)
+        if minim > s1:
+            index = j
+            minim = s1
+    return index
+
 
 def createChrom(chromLength):
     chromosome = ""
@@ -49,8 +72,8 @@ def crossover(chrom1, chrom2):
 
 def mutation(chromosome):
     mutatedChromosome = list(chromosome)
-    geneIndex = random.randint(0, len(chromosome) - 1)  # Select a random gene index
-    mutatedChromosome[geneIndex] = '1' if chromosome[geneIndex] == '0' else '0'  # Flip the selected gene
+    geneIndex = random.randint(0, len(chromosome) - 1)
+    mutatedChromosome[geneIndex] = '1' if chromosome[geneIndex] == '0' else '0'
     return ''.join(mutatedChromosome)
 
 def main():
@@ -229,6 +252,13 @@ def main():
             suma += fit
         return suma
 
+    def elitism_criteria(population, newPopulation):
+        fittest1 = maxFit(population,a,b,c,precision,xMin)
+        least_fit1 = minFit(newPopulation,a,b,c,precision,xMin)
+
+        newPopulation[least_fit1] = copy.copy(population[fittest1])
+        return
+
     def createNewPop(lista_crom):
         sumaF = sumFit(lista_crom)
         fit_max = 0
@@ -307,6 +337,8 @@ def main():
 
         if fit_max > findMax(chromModified):
             chromModified = maxChromosome
+
+        elitism_criteria(lista_crom, chromModified)
         return chromModified
 
     idx = 0
@@ -315,5 +347,6 @@ def main():
         pop = createNewPop(pop)
         g.write(str(findMax(pop)) + "\n")
         idx += 1
+
 if __name__ == '__main__':
     main()
