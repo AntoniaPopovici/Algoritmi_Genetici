@@ -18,6 +18,6 @@ The project simulates a genetic algorithm to optimize a mathematical function re
 
 ### How to Use
 
-1. **Input Configuration**: Provide input parameters in the `input.txt` file. Parameters include population size, coefficient values, precision, crossover probability, mutation probability, and number of iterations.
-2. **Run the Code**: Execute the Python script (`main.py`), which reads the input parameters, performs the genetic algorithm simulation, and writes the evolution progress to the `evolution.txt` file.
-3. **Output Analysis**: Analyze the `evolution.txt` file to observe the evolution of the population over iterations and determine the maximum fitness achieved.
+1. Provide input parameters in the `input.txt` file. Parameters include population size, coefficient values, precision, crossover probability, mutation probability, and number of iterations.
+2. Execute the Python script (`main.py`), which reads the input parameters, performs the genetic algorithm simulation, and writes the evolution progress to the `evolution.txt` file.
+3. Analyze the `evolution.txt` file to observe the evolution of the population over iterations and determine the maximum fitness achieved.
